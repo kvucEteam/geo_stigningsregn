@@ -13,10 +13,22 @@
         "korrekt_svar": "100"
 
     }, {
-        "spm_header": "Hvornår regner det?",
-        "spm": "Find ud af hvor langt luftmassen skal op ad bjerget inden den bliver mættet, dvs. den  relative luftfugtighed når 100%.", 
+        "spm_header": "Ved hvilken temperatur regner det?",
+        "spm": "Undersøg så vha. dugpunktskurven hvad temperaturen skal være før end luftmassen med denne aktuelle luftfugtighed vil være mættet.", 
         "spm_type": "",
-        "spm_instruktion": "Den aktuelle luftfugtighed er stadig den samme (da det jo ikke har regnet endnu), så skriv den ind på figuren. Undersøg så vha. dugpunktskurven hvad temperaturen skal være før end luftmassen med denne aktuelle luftfugtighed vil være mættet. Regn herefter ud hvor meget temperaturen er faldet fra bunden af bjerget og til dette punkt. Brug dette fald og viden om tøradiabatisk afkøling til at beregne hvor højt op af bjerget luftmassen er kommet.",
+        "spm_instruktion": "Den aktuelle luftfugtighed er stadig den samme (da det jo ikke har regnet endnu), så skriv den ind på figuren. ",
+        "korrekt_svar": "100"
+    }, {
+        "spm_header": "Hvor på bjerget vil det regne?",
+        "spm": "Brug den viden om tøradiabatisk afkøling til at beregne hvor højt op af bjerget luftmassen er kommet når det regner.", 
+        "spm_type": "",
+        "spm_instruktion": "Beregn så vha. din viden om fugtadiabatisk afkøling hvor meget temperaturen vil være faldet og dermed hvad temperaturen er på toppen af bjerget. Find derefter ud fra dugpunktskurven det maksimale vanddampindhold for luftmassen. Beregn til sidst den absolutte luftfugtighed på toppen af bjerget. Brug formlen: <span><img class='img-responsive' src='img/formel_1.png'/><span>",
+        "korrekt_svar": "100"
+    }, {
+        "spm_header": "Det er koldt på toppen",
+        "spm": "Undersøg hvor meget temperaturen og den aktuelle luftfugtighed når at falde inden luftmassen når toppen af bjerget.", 
+        "spm_type": "",
+        "spm_instruktion": "Beregn så vha. din viden om fugtadiabatisk afkøling hvor meget temperaturen vil være faldet og dermed hvad temperaturen er på toppen af bjerget. Find derefter ud fra dugpunktskurven det maksimale vanddampindhold for luftmassen. Beregn til sidst den absolutte luftfugtighed på toppen af bjerget. Brug formlen: <span><img class='img-responsive' src='img/formel_1.png'/><span>",
         "korrekt_svar": "100"
     }, {
         "spm_header": "Det er koldt på toppen",
