@@ -1,7 +1,6 @@
 #myCanvas {
     width: 100%;
     height: 100%;
-    background-color: #87CEEB;
 }
 
 .canvas_overlay {
@@ -11,7 +10,8 @@
 
 .canvas_container {
     position: relative;
-    height: 100%;
+    background-image: url("img/windyBG.png");
+
 }
 
 .spm_container {
@@ -20,13 +20,70 @@
     border-radius: 8px;
     opacity: .8;
     padding: 0px 20px 20px 20px;
+    height: auto;
+    overflow: auto;
 }
 
 .btn_abolute {
     position: absolute;
 }
 
+.instr_text {
+    margin-top: 10px;
+}
 
-.instr_text{
-	margin-top:10px;
+#UserMsgBox {
+    top: 5%;
+    max-height: 95%;
+}
+
+.korrekt_svar {
+    color: green;
+    font-size: 10px;
+}
+
+.svar {
+    width: 103px;
+    text-align: right;
+    height: 33px;
+    margin-bottom: 12px;
+}
+
+.btn {
+    /* margin-left: 20px; */
+    margin-bottom: 10px;
+    margin-top: 0px;
+}
+
+.btn_svar{
+    margin-top: 7px;
+}
+
+.popup_menu {
+    position: absolute;
+    background-color: white;
+    font-size: 13px;
+    line-height: .5;
+    padding: 10px 8px 0px 10px;
+    border-radius: 4px;
+    opacity: .8;
+}
+
+.popup_menu:hover {
+    font-size: 16px;
+    line-height: .8;
+    padding: 12px 4px 0px 8px;
+    top: +=50px;
+}
+
+.popud_selected {}
+
+.glyphicon-chevron-down {
+    margin-right: 6px;
+    font-size: 15px;
+    color:#999;
+}
+
+.canvas_container {
+    height: 650px;
 }

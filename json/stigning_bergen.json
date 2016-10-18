@@ -3,9 +3,7 @@
         "header": "Bevægelser i teksten 1",
         "instruktion": "Placer tekststykkerne, så de står i den rigtige rækkefølge.",
         "instruktion_2": "Klik på ikonerne. Vælg for hvert tekststykke om den er i helikopterperspektiv eller zoomet ind.",
-        "titel": "Nytårsforsætter",
-        "opg_type":"random"
-
+        "opg_type": "bergen"
     },
     "spm": [{
         "spm_header": "Hvad er den relative luftfugtighed (RF) ved foden af bjergets stødside?",

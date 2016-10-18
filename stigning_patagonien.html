@@ -13,7 +13,7 @@
 
 <body>
     <div class="container-fluid">
-        <h1>Stigningsregn</h1>
+        <h1>Stigningsregn - Patagonien</h1>
         <div class="instr_container"></div>
         <div id="explanationWrapper"></div>
     </div>
@@ -22,44 +22,44 @@
             <canvas id="myCanvas">
             </canvas>
             <div class="canvas_overlay col-xs-12">
-                <div class="col-md-8 hidden-xs">
+                <div class="col-xs-8">
+                    
                 </div>
-                <div class="col-md-4 col-sm-12 spm_container">
+                <div class="col-xs-4 spm_container">
                     <h4 class="spm_header"></h4>
                     <p class="spm"></p>
                     <span class="input_container">
-                        <input type="text" class="svar" autofocus />
+                        <input type="text" class="svar" />
                         <span class="input_value"></span>
                     </span>
                     <span class="btn btn-primary btn_svar">Tjek svar</span>
+                    
                     <span class="btn btn-info btn-sm btn_help"><span class="glyphicon glyphicon-chevron-down"></span> Instruktion</span>
+
                     <span class="btn btn-info btn-sm btn_dug">Dugpunktskurve</span>
+                    
                     <div class="spm_instruktion">Instruks:</div>
                     <div class="korrekt_svar"></div>
                 </div>
                 <div class="popup_menu bund_popud">
-                    <p><b>Vejrstation - dal I</b></p>
                     <p class="popud_h">H: 600m</p>
                     <p class="popud_t">T: 600m</p>
                     <p class="popud_af">AF: 15g / m3</p>
-                    <p class="popud_rf" class="active_popud">RF: ?</p>
+                    <p class="popud_rf">RF: ?</p>
                 </div>
                 <div class="popup_menu top_popud">
-                    <p><b>Vejrstation - top</b></p>
                     <p class="popud_h">H: 600m</p>
                     <p class="popud_t">T: ?</p>
                     <p class="popud_af">AF: ?</p>
                     <p class="popud_rf">RF: ?</p>
                 </div>
                 <div class="popup_menu slut_popud">
-                    <p><b>Vejrstation - dal II</b></p>
                     <p class="popud_h">H: 600m</p>
                     <p class="popud_t">T: ?</p>
                     <p class="popud_af">AF:?</p>
                     <p class="popud_rf">RF:?</p>
                 </div>
                 <div class="popup_menu mellem_popud">
-                    <p><b>Dugpunkt</b></p>
                     <p class="popud_h">H: ?</p>
                     <p class="popud_t">T: 600m</p>
                     <p class="popud_af">AF: 15g / m3</p>
@@ -68,15 +68,15 @@
             </div>
         </div>
     </div>
-    <script src="../library/vendor_scripts.js">
-    </script>
+    <script src="../library/vendor_scripts.js"></script>
     <script src="../library/custom_scripts.js">
+        
     </script>
     <script type="text/paperscript" src="stigning.js" canvas="myCanvas">
     </script>
     <script type="text/javascript ">
     $(document).ready(function() {
-        getAjaxData("GET", "json/stigning.json", false, "json");
+        getAjaxData("GET", "json/stigning_patagonien.json", false, "json");
         one_line_footer();
 
     });
