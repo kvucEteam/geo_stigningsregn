@@ -12,7 +12,7 @@
 
  var svar_Array = [];
  var accept_svar_Array = [];
- var fejl = 0; 
+ var fejl = 0;
  // Konstante variabler: 
 
  var mountainwidth = canvas_width / 2 + 50;
@@ -42,6 +42,8 @@
  var sky_vektor;
  var angle;
 
+ var togglestate = "hidden";
+
  var bundstation;
  var topstation;
  var slutstation;
@@ -54,7 +56,7 @@
      opg_type = jsonData.userInterface.opg_type;
 
      $(".btn_dug").click(function() {
-         UserMsgBox("body", "<h2>Dugpunktskurve</h2><img class='img-responsive' src='img/dpk.jpg'");
+         UserMsgBox("body", "<h2>Dugpunktskurve</h2><img class='img-responsive' src='img/dugpunktskurve.png'");
      });
 
      $(".btn_svar").click(function() {
@@ -92,7 +94,16 @@
 
  function show_help() {
      $(".spm_instruktion").slideToggle();
-     
+     if (togglestate == "hidden") {
+         $(".glyphicon-chevron-up").show();
+         $(".glyphicon-chevron-down").hide();
+         togglestate = "visible";
+     } else {
+         togglestate = "hidden";
+         $(".glyphicon-chevron-up").hide();
+         $(".glyphicon-chevron-down").show();
+     }
+     console.log("TS: " + togglestate);
  }
 
  function initializeMountainPath() {
@@ -339,18 +350,19 @@
      sky_group.opacity = 0;
      $(".korrekt_svar").html("Korrekt_svar: " + svar_Array[runde]);
 
-
+     console.log(project);
  }
 
 
  function pose_question(runde) {
-    $(".korrekt_svar").html("Korrekt_svar: " + svar_Array[runde]);
+     $(".korrekt_svar").html("Korrekt_svar: " + svar_Array[runde]);
      $(".spm_header").html("<h6 class='spm_num'>Spørgsmål " + (runde + 1) + "/" + jsonData.spm.length + "</h6 <h4>" + jsonData.spm[runde].spm_header + "</h4>");
      $(".spm").html("<h4>" + jsonData.spm[runde].spm + "</h4>");
      $(".spm_instruktion").html("<p class='instr_text'><b>Instruktion: </b>" + jsonData.spm[runde].spm_instruktion + "</p>").slideUp(0);
      $(".input_value").html(jsonData.spm[runde].value);
-     
+     $(".glyphicon-chevron-up").hide();
      $('.svar').val("");
+     togglestate = "hidden";
  }
 
  function tjek_svar() {
@@ -371,7 +383,7 @@
              runde++;
              pose_question(runde);
          } else {
-            fejl++;
+             fejl++;
              user_input = user_input.replace(".", ",");
              UserMsgBox("body", "<h3>Dit svar: <b>" + user_input + jsonData.spm[runde].value + " </b>er desværre <span class='label label-danger'>forkert</span></h3><p>" + jsonData.spm[runde].spm_instruktion + "</p>");
          }
@@ -528,7 +540,7 @@
          copy.strokeWidth = .3 + Math.random() * 1.8;
          copy.add(new Point(sky_group.position.x + x_pos, sky_group.position.y + 30));
          copy.add(new Point(sky_group.position.x + 1 + x_pos, sky_group.position.y + 33 + Math.random() * 15));
-             //console.log(rainfall_path.position.y);
+         //console.log(rainfall_path.position.y);
          rain_level.addChild(copy);
          rain_group.addChild(rain_level);
          //console.log("RGL: " + rain_group.children.length);

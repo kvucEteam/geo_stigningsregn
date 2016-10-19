@@ -35,6 +35,7 @@
 #UserMsgBox {
     top: 5%;
     max-height: 95%;
+    width:33%;
 }
 
 .korrekt_svar {
@@ -58,6 +59,9 @@
 .btn_svar{
     margin-top: 7px;
 }
+.btn_help{
+    padding-left: 10px;
+}
 
 .popup_menu {
     position: absolute;
@@ -78,12 +82,20 @@
 
 .popud_selected {}
 
-.glyphicon-chevron-down {
+.glyphicon-chevron-down, .glyphicon-chevron-up  {
     margin-right: 6px;
-    font-size: 15px;
+    font-size: 17px;
     color:#999;
+    position: absolute;
+    top: 10px;
 }
 
 .canvas_container {
     height: 650px;
+}
+
+.glyhicontainer{
+    position: relative;
+    margin-right: 22px;
+    top: -8px;
 }
