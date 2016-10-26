@@ -51,7 +51,14 @@
 
 
  $(document).ready(function() {
-     console.log();
+
+
+     var cheat = getUrlVars();
+
+     if (cheat != "cheat") {
+         $(".korrekt_svar").hide();
+     }
+     console.log("URL:" + cheat);
 
      opg_type = jsonData.userInterface.opg_type;
 
@@ -83,12 +90,7 @@
              }
          }
      });
-     $(".popup_menu").draggable({
-         drag: function(event, ui) {
-             $(this).css("color", "green")
-         }
-
-     });
+     $(".popup_menu").draggable({});
  });
 
 
@@ -166,7 +168,9 @@
      svar_1 = Math.round((luftfugtighed / maks_vdi) * 100);
 
      if (svar_1 > 70 && opg_type == "random") {
-         console.log("BROKE IT!");
+         console.log("BROKE IT! : svar_1 > 70");
+         svar_Array = [];
+
          initializeMountainPath();
          return;
      }
@@ -195,7 +199,10 @@
      accept_svar_Array.push(100);
 
      if (svar_4 > bjerg_hojde - 500 && opg_type == "random") {
+     	console.log("BROKE IT! > bjerg_hojde > blbl");
+         svar_Array = [];
          initializeMountainPath();
+         
          return;
      }
 
@@ -379,13 +386,13 @@
 
              updateBoxes(runde);
              user_input = user_input.replace(".", ",");
-             UserMsgBox("body", "<h3>Dit svar: <b>" + user_input + jsonData.spm[runde].value + " </b>er <span class='label label-success'>accepteret</span></h3><p>Systemet har udregnet " + korrekt + jsonData.spm[runde].value + " som det helt korrekte svar. Svaret bliver overført til modellen og det er den værdi du skal arbejde videre med.");
+             UserMsgBox("body", "<h3>Dit svar: <b>" + user_input + jsonData.spm[runde].value + " </b> er<span class='label label-success'>accepteret</span></h3><p>Systemet har udregnet " + korrekt + jsonData.spm[runde].value + " som det helt korrekte svar. Svaret bliver overført til modellen og det er den værdi du skal arbejde videre med.");
              runde++;
              pose_question(runde);
          } else {
              fejl++;
              user_input = user_input.replace(".", ",");
-             UserMsgBox("body", "<h3>Dit svar: <b>" + user_input + jsonData.spm[runde].value + " </b>er desværre <span class='label label-danger'>forkert</span></h3><p>" + jsonData.spm[runde].spm_instruktion + "</p>");
+             UserMsgBox("body", "<h3>Dit svar: <b>" + user_input + jsonData.spm[runde].value + " </b> er desværre<span class='label label-danger'>forkert</span></h3><p>" + jsonData.spm[runde].spm_instruktion + "</p>");
          }
      }
      $(".svar").focus();
@@ -403,7 +410,7 @@
      if (num == 0) {
          bundstation.fillColor = '#999';
 
-         $(".bund_popud").find(".popud_rf").html("RF: " + svar_1 + " %");
+         $(".bund_popud").find(".popud_rf").html("RF: " + svar_1 + " %").removeClass("active_popud");
          tweentext($(".bund_popud").find(".popud_rf"));
      } else if (num == 1) {
          mellemstation.fillColor = '#56BFC5';
@@ -413,6 +420,7 @@
          $(".mellem_popud").css("left", mellemstation_x + 60).css("top", mellemstation_y);
          mellemstation.opacity = 1;
          $(".mellem_popud").find(".popud_af").html("AF: " + luftfugtighed + " gr/m<sup>3</sup>");
+         $(".mellem_popud").find(".popud_h").html("H: ?").addClass("active_popud");
 
 
      } else if (num == 2) {
@@ -420,7 +428,8 @@
          sky_group.opacity = 1;
 
          $(".mellem_popud").find(".popud_h").html("H: " + svar_Array[num] + " moh");
-
+		$(".mellem_popud").find(".popud_h").removeClass("active_popud");
+		$(".top_popud").find(".popud_t").addClass("active_popud");
          $(".mellem_popud").find(".popud_rf").html("RF: 100 %");
          tweentext($(".mellem_popud").find(".popud_rf"));
          tweentext($(".mellem_popud").find(".popud_af"));
@@ -431,26 +440,29 @@
 
      } else if (num == 3) {
 
-         $(".top_popud").find(".popud_t").html("T: " + svar_Array[num] + "<sup>o</sup>C");
+         $(".top_popud").find(".popud_t").html("T: " + svar_Array[num] + "<sup>o</sup>C").removeClass("active_popud");
          $(".top_popud").find(".popud_rf").html("RF: 100 %");
+         $(".top_popud").find(".popud_af").addClass("active_popud");
          tweentext($(".top_popud").find(".popud_rf"));
          tweentext($(".top_popud").find(".popud_t"));
 
      } else if (num == 4) {
-         $(".top_popud").find(".popud_af").html("AF: " + svar_Array[num] + " gr/m<sup>3</sup>");
+         $(".top_popud").find(".popud_af").html("AF: " + svar_Array[num] + " gr/m<sup>3</sup>").removeClass("active_popud");
+         $(".slut_popud").find(".popud_t").addClass("active_popud");
          tweentext($(".top_popud").find(".popud_af"));
          topstation.fillColor = '#999';
          slutstation.fillColor = '#56BFC5';
 
      } else if (num == 5) {
-         $(".slut_popud").find(".popud_t").html("T: " + svar_Array[num] + "<sup>o</sup>C");
+         $(".slut_popud").find(".popud_t").html("T: " + svar_Array[num] + "<sup>o</sup>C").removeClass("active_popud");
          $(".slut_popud").find(".popud_af").html("AF: " + svar_Array[4] + " gr/m<sup>3</sup>");
+         $(".slut_popud").find(".popud_rf").addClass("active_popud");
          tweentext($(".slut_popud").find(".popud_af"));
          tweentext($(".slut_popud").find(".popud_t"));
      } else if (num == 6) {
-         $(".slut_popud").find(".popud_rf").html("RF: " + svar_Array[num] + " %");
+         $(".slut_popud").find(".popud_rf").html("RF: " + svar_Array[num] + " %").removeClass("active_popud");
          tweentext($(".slut_popud").find(".popud_rf"));
-         $(".spm_container").html("<h4>Du har løst opgaven korrekt - tillykke!</h4><span class='btn btn-info btn-restart'>Prøv med et nyt bjerg</span>");
+         $(".spm_container").html("<h4>Du har løst opgaven korrekt - tillykke!</h4><span class='btn btn-info btn-restart'>"+jsonData.userInterface.restart_tekst+"</span>");
          $(".btn-restart").click(function() {
              location.reload();
          });
@@ -512,7 +524,7 @@
          rain_group.removeChildren();
      }
 
-     console.log(rain_group.children.length);
+     //console.log(rain_group.children.length);
 
 
 

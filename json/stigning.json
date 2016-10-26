@@ -4,11 +4,12 @@
         "instruktion": "Placer tekststykkerne, så de står i den rigtige rækkefølge.",
         "instruktion_2": "Klik på ikonerne. Vælg for hvert tekststykke om den er i helikopterperspektiv eller zoomet ind.",
         "titel": "Nytårsforsætter",
-        "opg_type":"random"
+        "opg_type":"random",
+        "restart_tekst" : "Prøv med et nyt bjerg"
 
     },
     "spm": [{
-        "spm_header": "Hvad er den relative luftfugtighed (RF) ved foden af bjergets stødside?",
+        "spm_header": "Hvad er den relative luftfugtighed (RF) ved foden af bjergets venstre side?",
         "spm": "Skriv den relative luftfugtighed ved bjergets fod:",
         "spm_type": "input",
         "value": "%",
@@ -16,14 +17,14 @@
         "korrekt_svar": "100"
 
     }, {
-        "spm_header": "Ved hvilken temperatur vil det begynde at regne når vinden bevæger sig op ad bjerget?",
+        "spm_header": "Ved hvilken temperatur vil der komme nedbør, når vinden bevæger sig op ad bjerget?",
         "spm": "", 
         "spm_type": "",
         "value": "<sup>o</sup>C",
         "spm_instruktion": "Brug dugpunktskurven til at bestemme temperaturen hvad skal være før luftmassen med den aktuelle luftfugtighed vil være mættet. Altså hvornår den relative luftfugtighed (RF) er nået 100%. Den aktuelle luftfugtighed (AF) er stadig den samme (da det jo ikke har regnet endnu).",
         "korrekt_svar": "100"
     }, {
-        "spm_header": "Hvor højt oppe ad bjerget vil det begynde at regne?",
+        "spm_header": "Hvor højt oppe ad bjerget vil der komme nedbør?",
         "spm": "", 
         "spm_type": "",
          "value": "m.o.h",
@@ -34,7 +35,7 @@
         "spm": "Beregn temperaturen på toppen af bjerget.", 
         "spm_type": "",
         "value": "<sup>o</sup>C",
-        "spm_instruktion": "Beregn hvor stor forskellen er i højde mellem punktet hvor regnen begynder og toppen af bjerget. Beregn så vha. din viden om fugtadiabatisk afkøling (0.5 grads temperaturfald pr. 100 m) hvor meget temperaturen vil være faldet og dermed hvad temperaturen er på toppen af bjerget.",
+        "spm_instruktion": "Beregn hvor stor forskellen er i højde mellem punktet hvor nedbøren begynder og toppen af bjerget. Beregn så vha. din viden om fugtadiabatisk afkøling (0.5 grads temperaturfald pr. 100 m) hvor meget temperaturen vil være faldet og dermed hvad temperaturen er på toppen af bjerget.",
         "korrekt_svar": "100"
     }, {
         "spm_header": "Hvad er den absolutte luftfugtighed på toppen af bjerget",

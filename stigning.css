@@ -18,7 +18,7 @@
     background-color: white;
     margin-top: 16px;
     border-radius: 8px;
-    opacity: .8;
+    opacity: 1;
     padding: 0px 20px 20px 20px;
     height: auto;
     overflow: auto;
@@ -73,13 +73,6 @@
     opacity: .8;
 }
 
-.popup_menu:hover {
-    font-size: 16px;
-    line-height: .8;
-    padding: 12px 4px 0px 8px;
-    top: +=50px;
-}
-
 .popud_selected {}
 
 .glyphicon-chevron-down, .glyphicon-chevron-up  {
@@ -98,4 +91,15 @@
     position: relative;
     margin-right: 22px;
     top: -8px;
+}
+
+.active_popud{
+	    /* color: green; */
+    font-size: 14px;
+    /* background-color: red; */
+    padding-top: 4px;
+    padding-bottom: 5px;
+    border: 1px solid #56BFC5;
+    border-radius: 4px;
+    margin-top: -4px;
 }
