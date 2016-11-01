@@ -71,9 +71,9 @@
      });
      pose_question(runde);
      initializeMountainPath();
+     $('.instr_container').html(instruction(jsonData.userInterface.instruktion)); //"Brug data fra de tre punkter på bjerget til at udfylde alle spørgsmålstegnene i infokasserne ved vejrstationerne"));
 
-     $("#explanationWrapper").html(explanation("Formålet med øvelsen er at øge forståelsen af begreberne aktuel luftfugtighed (AF) og relativ luftfugtighed (RF), dugpunkt og stigningsregn."));
-     $('.instr_container').html(instruction("Brug data fra de tre punkter på bjerget til at udfylde alle spørgsmålstegnene i infokasserne ved vejrstationerne"));
+     $("#explanationWrapper").html(explanation(jsonData.userInterface.explanation)); //("Formålet med øvelsen er at øge forståelsen af begreberne aktuel luftfugtighed (AF) og relativ luftfugtighed (RF), dugpunkt og stigningsregn."));
      $(".footerCopywrite").eq(0).hide();
      $(".canvas_overlay").css("height", canvas_height);
      $(".mellem_popud").hide();
@@ -110,6 +110,9 @@
 
  function initializeMountainPath() {
 
+     svar_Array = [];
+     accept_svar_Array = [];
+
      if (opg_type == "random") {
          var bjerg_hojde = min_bjerg_hojde + Math.random() * (max_bjerg_hojde - min_bjerg_hojde);
          var bjerg_start = Math.random() * max_bjerg_start;
@@ -130,13 +133,15 @@
 
          luftfugtighed = 2 + Math.round(Math.random() * 10);
 
+
+
      } else if (opg_type == "bergen") {
          max_draw_height = 1300 / canvas_height;
 
          var bjerg_hojde = 643;
          var bjerg_start = 0;
-         var bjerg_slut = 132;
-         var temperatur = 14; // + Math.round(Math.random() * 13);
+         var bjerg_slut = 37;
+         var temperatur = 11; // + Math.round(Math.random() * 13);
          luftfugtighed = 9;
      } else if (opg_type == "patagonien") {
          max_draw_height = 8000 / canvas_height;
@@ -157,7 +162,7 @@
      //POPULER POPUDFELTER: 
      $(".bund_popud").find(".popud_h").html("H: " + Math.floor(bjerg_start) + " moh");
      $(".bund_popud").find(".popud_t").html("T: " + temperatur + "<sup>o</sup>C");
-     $(".bund_popud").find(".popud_af").html("AF: " + luftfugtighed + " gr/m<sup>3</sup>");
+     $(".bund_popud").find(".popud_af").html("AF: " + luftfugtighed + " g/m<sup>3</sup>");
 
      $(".top_popud").find(".popud_h").html("H: " + Math.floor(bjerg_hojde) + " moh");
      $(".slut_popud").find(".popud_h").html("H: " + Math.floor(bjerg_slut) + " moh");
@@ -169,7 +174,6 @@
 
      if (svar_1 > 70 && opg_type == "random") {
          console.log("BROKE IT! : svar_1 > 70");
-         svar_Array = [];
 
          initializeMountainPath();
          return;
@@ -196,19 +200,29 @@
      // SVAR 4: VED HVILKEN HØJDE REGNER DET
      var svar_4 = Math.round(bjerg_start + (svar_3 * 100));
      svar_Array.push(svar_4);
-     accept_svar_Array.push(100);
+     accept_svar_Array.push(10);
 
      if (svar_4 > bjerg_hojde - 500 && opg_type == "random") {
-     	console.log("BROKE IT! > bjerg_hojde > blbl");
-         svar_Array = [];
+         console.log("BROKE IT! > bjerg_hojde > blbl");
+
          initializeMountainPath();
-         
+
          return;
      }
 
      console.log("maks_vdi: " + maks_vdi + " LF: " + luftfugtighed + "temperatur: " + temperatur + " RH : " + svar_1);
+
+
      // Hvad er temperaturen på toppen af bjerget?
      var svar_5 = temperatur - Math.round((bjerg_hojde - svar_4) * .005 + Math.round(svar_4 - bjerg_start) * .010);
+
+     if (svar_5 < -10) {
+         console.log("BROKE IT! > for koldt på toppen! ");
+
+         initializeMountainPath();
+
+         return;
+     }
 
      svar_Array.push(svar_5);
      accept_svar_Array.push(2);
@@ -223,7 +237,17 @@
      accept_svar_Array.push(1);
 
 
+     // temperatur i bunden: 
      var svar_7 = Math.round(svar_5 + (bjerg_hojde - bjerg_slut) * 0.01);
+
+
+     if (svar_7 > 30) {
+         console.log("BROKE IT! > for varmt i dalen! ");
+
+         initializeMountainPath();
+
+         return;
+     }
 
      svar_Array.push(svar_7);
      accept_svar_Array.push(2);
@@ -236,7 +260,7 @@
      accept_svar_Array.push(5);
 
 
-     console.log(svar_Array)
+     console.log("ACEP: " + accept_svar_Array)
 
 
 
@@ -365,9 +389,10 @@
      $(".korrekt_svar").html("Korrekt_svar: " + svar_Array[runde]);
      $(".spm_header").html("<h6 class='spm_num'>Spørgsmål " + (runde + 1) + "/" + jsonData.spm.length + "</h6 <h4>" + jsonData.spm[runde].spm_header + "</h4>");
      $(".spm").html("<h4>" + jsonData.spm[runde].spm + "</h4>");
-     $(".spm_instruktion").html("<p class='instr_text'><b>Instruktion: </b>" + jsonData.spm[runde].spm_instruktion + "</p>").slideUp(0);
+     $(".spm_instruktion").html("<p class='instr_text'>" + jsonData.spm[runde].spm_instruktion + "</p>").slideUp(0);
      $(".input_value").html(jsonData.spm[runde].value);
      $(".glyphicon-chevron-up").hide();
+     $(".glyphicon-chevron-down").show();
      $('.svar').val("");
      togglestate = "hidden";
  }
@@ -382,17 +407,17 @@
 
      if (user_input) {
 
-         if (user_input < (korrekt + accept_svar_Array[runde]) && user_input > (korrekt - accept_svar_Array[runde])) {
+         if (user_input <= (korrekt + accept_svar_Array[runde]) && user_input >= (korrekt - accept_svar_Array[runde])) {
 
              updateBoxes(runde);
              user_input = user_input.replace(".", ",");
-             UserMsgBox("body", "<h3>Dit svar: <b>" + user_input + jsonData.spm[runde].value + " </b> er<span class='label label-success'>accepteret</span></h3><p>Systemet har udregnet " + korrekt + jsonData.spm[runde].value + " som det helt korrekte svar. Svaret bliver overført til modellen og det er den værdi du skal arbejde videre med.");
+             UserMsgBox("body", "<h3>Dit svar: <b>" + user_input + " " + jsonData.spm[runde].value + " </b> er<span class='label label-success'>accepteret</span></h3><p>Systemet har udregnet " + korrekt + jsonData.spm[runde].value + " som det rigtige afrundede svar. Svaret bliver overført til modellen og det er den værdi du skal arbejde videre med.");
              runde++;
              pose_question(runde);
          } else {
              fejl++;
              user_input = user_input.replace(".", ",");
-             UserMsgBox("body", "<h3>Dit svar: <b>" + user_input + jsonData.spm[runde].value + " </b> er desværre<span class='label label-danger'>forkert</span></h3><p>" + jsonData.spm[runde].spm_instruktion + "</p>");
+             UserMsgBox("body", "<h3>Dit svar: <b>" + user_input + " " + jsonData.spm[runde].value + " </b> er desværre<span class='label label-danger'>forkert</span></h3><p>" + jsonData.spm[runde].spm_instruktion + "</p>");
          }
      }
      $(".svar").focus();
@@ -419,7 +444,7 @@
          $(".mellem_popud").show();
          $(".mellem_popud").css("left", mellemstation_x + 60).css("top", mellemstation_y);
          mellemstation.opacity = 1;
-         $(".mellem_popud").find(".popud_af").html("AF: " + luftfugtighed + " gr/m<sup>3</sup>");
+         $(".mellem_popud").find(".popud_af").html("AF: " + luftfugtighed + " g/m<sup>3</sup>");
          $(".mellem_popud").find(".popud_h").html("H: ?").addClass("active_popud");
 
 
@@ -428,8 +453,8 @@
          sky_group.opacity = 1;
 
          $(".mellem_popud").find(".popud_h").html("H: " + svar_Array[num] + " moh");
-		$(".mellem_popud").find(".popud_h").removeClass("active_popud");
-		$(".top_popud").find(".popud_t").addClass("active_popud");
+         $(".mellem_popud").find(".popud_h").removeClass("active_popud");
+         $(".top_popud").find(".popud_t").addClass("active_popud");
          $(".mellem_popud").find(".popud_rf").html("RF: 100 %");
          tweentext($(".mellem_popud").find(".popud_rf"));
          tweentext($(".mellem_popud").find(".popud_af"));
@@ -447,7 +472,7 @@
          tweentext($(".top_popud").find(".popud_t"));
 
      } else if (num == 4) {
-         $(".top_popud").find(".popud_af").html("AF: " + svar_Array[num] + " gr/m<sup>3</sup>").removeClass("active_popud");
+         $(".top_popud").find(".popud_af").html("AF: " + svar_Array[num] + " g/m<sup>3</sup>").removeClass("active_popud");
          $(".slut_popud").find(".popud_t").addClass("active_popud");
          tweentext($(".top_popud").find(".popud_af"));
          topstation.fillColor = '#999';
@@ -455,14 +480,14 @@
 
      } else if (num == 5) {
          $(".slut_popud").find(".popud_t").html("T: " + svar_Array[num] + "<sup>o</sup>C").removeClass("active_popud");
-         $(".slut_popud").find(".popud_af").html("AF: " + svar_Array[4] + " gr/m<sup>3</sup>");
+         $(".slut_popud").find(".popud_af").html("AF: " + svar_Array[4] + " g/m<sup>3</sup>");
          $(".slut_popud").find(".popud_rf").addClass("active_popud");
          tweentext($(".slut_popud").find(".popud_af"));
          tweentext($(".slut_popud").find(".popud_t"));
      } else if (num == 6) {
          $(".slut_popud").find(".popud_rf").html("RF: " + svar_Array[num] + " %").removeClass("active_popud");
          tweentext($(".slut_popud").find(".popud_rf"));
-         $(".spm_container").html("<h4>Du har løst opgaven korrekt - tillykke!</h4><span class='btn btn-info btn-restart'>"+jsonData.userInterface.restart_tekst+"</span>");
+         $(".spm_container").html("<h4>Du har løst opgaven <span class='label label-success'>korrekt</span></h4><p>" + jsonData.userInterface.slutfeedback + "</p><span class='btn btn-info btn-restart'>" + jsonData.userInterface.restart_tekst + "</span>");
          $(".btn-restart").click(function() {
              location.reload();
          });
