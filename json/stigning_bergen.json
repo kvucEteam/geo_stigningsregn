@@ -8,6 +8,43 @@
         "slutfeedback" : "De vigtigste pointer: <ul><li>Temperaturen er steget fra den første til den sidste vejrstation i dalene</li><li>Den absolutte luftfugtighed er faldet</li><li>Den relative luftfugtighed er også faldet.</li></ul><p>Efter det har regnet af over bjergets top, er vejret på den anden side af dalen tørt og varmt. Da det ofte blæser fra nordvest ind over Ulriken betyder det, at vejret i Nordjylland er varmere og tørrere end resten af Danmark."
 
     },
+    "begreber": [{
+        "forkortelse": " (AF)",
+        "navn": "Absolut luftfugtighed",
+        "forklaring":"Den faktiske mængde vand en given mængde luft indeholder. Opgives normalt i g/m<sup>3</sup>."
+    }, {
+        "forkortelse": "",
+        "navn": "Maksimalt vanddampsindhold",
+        "forklaring":"Den mængde vand en luftmasse maksimalt kan indeholde ved en given temperatur. Dette kan aflæses på dugpunktskurven og opgives i g/m<sup>3</sup>."
+    }, {
+        "forkortelse": " (RF)",
+        "navn": "Relativ luftfugtighed",
+        "forklaring":"Forholdet mellem den absolutte luftfugtighed og det maksimale vanddampindhold. Dette opgives i procent."
+    }, {
+        "forkortelse": "",
+        "navn": "Dugpunktskurve",
+        "forklaring":"Beskriver sammenhængen mellem temperatur (x-aksen) og det maksimale vanddampindhold (y-aksen) en luftmasse kan indeholde. Punkter under denne kurve svarer således til at luftmassen ikke er mættet med vanddamp."
+    }, {
+        "forkortelse": " (H)",
+        "navn": "Højde",
+        "forklaring":"Måles i meter over havets overflade (moh)."
+    },{
+        "forkortelse": " (T)",
+        "navn": "Temperatur",
+        "forklaring":"Måles i <sup>o</sup>C."
+    }, {
+        "forkortelse": "",
+        "navn": "Tøradiabatisk afkøling",
+        "forklaring":"Afkølingen sker tøradiabatisk, hvis luftmassen ikke er mættet med vanddamp. Ved en tøradiabatisk afkøling falder temperaturen med 1<sup>o</sup>C pr. 100 m luftmassen bevæger sig opad."
+    }, {
+        "forkortelse": "",
+        "navn": "Tøradiabatisk opvarmning",
+        "forklaring":"Opvarmningen sker tøradiabatisk, hvis luftmassen ikke er mættet med vanddamp. Ved en tøradiabatisk opvarmning stiger temperaturen med 1<sup>o</sup>C pr. 100 m luftmassen bevæger sig nedad."
+    }, {
+        "forkortelse": "",
+        "navn": "Fugtadiabatisk afkøling",
+        "forklaring":"Afkølingen sker fugtadiabatisk, hvis luftmassen er mættet med vanddamp. Ved en fugtadiabatisk afkøling falder temperaturen med 0,5 <sup>o</sup>C pr. 100 m luftmassen bevæger sig opad. Da luften er mættet vil der ske en fortætning og der falder nedbør."
+    }],
     "spm": [{
         "spm_header": "Hvad er den relative luftfugtighed (RF) ved foden af bjergets venstre side?",
         "spm": "Skriv den relative luftfugtighed ved bjergets fod:",

@@ -82,6 +82,9 @@
      $(".btn_help").click(function() {
          show_help();
      });
+     $(".btn_begreber").click(function() {
+         show_begreber();
+     });
      $(document).keypress(function(e) {
          if (e.which == 13) {
              console.log($("#UserMsgBox").length);
@@ -93,6 +96,18 @@
      $(".popup_menu").draggable({});
  });
 
+ function show_begreber() {
+     var HTML = "<h2>Forklaring på begreberne (fagtermene) i opgaven</h2>";
+     for (var i = 0; i < jsonData.begreber.length; i++) {
+         HTML += "<h4> ";
+         HTML += jsonData.begreber[i].navn + jsonData.begreber[i].forkortelse + "</h4>";
+         HTML += "<p>" + jsonData.begreber[i].forklaring + "</p>";
+
+     }
+     UserMsgBox_xclick("body", HTML);
+     $("#UserMsgBox").css("width", "70%");
+
+ }
 
  function show_help() {
      $(".spm_instruktion").slideToggle();
@@ -144,13 +159,13 @@
          var temperatur = 11; // + Math.round(Math.random() * 13);
          luftfugtighed = 9;
      } else if (opg_type == "patagonien") {
-         max_draw_height = 8000 / canvas_height;
+         max_draw_height = 4300 / canvas_height;
 
-         var bjerg_hojde = 3400;
-         var bjerg_start = 200;
-         var bjerg_slut = 1200;
-         var temperatur = 14; // + Math.round(Math.random() * 13);
-         luftfugtighed = 9;
+         var bjerg_hojde = 2405;
+         var bjerg_start = 20;
+         var bjerg_slut = 904;
+         var temperatur = 18; // + Math.round(Math.random() * 13);
+         luftfugtighed = 10;
      }
      console.log("Bjerg start: " + bjerg_start + ", Bjerg_top: " + bjerg_hojde + " bjerg_slut: " + bjerg_slut);
 
@@ -260,7 +275,7 @@
      accept_svar_Array.push(5);
 
 
-     console.log("ACEP: " + accept_svar_Array)
+     console.log("svar: " + svar_Array)
 
 
 
@@ -309,11 +324,13 @@
      // TEGN TEXFELTER PBA BJERG:
 
      $(".bund_popud").css("top", canvas_height - pixel_bjerg_start - 130).css("left", 10);
+      $(".slut_popud").css("right", 10).css("top", canvas_height - pixel_bjerg_slut - 130);
+         $(".top_popud").css("left", mountainwidth - 45).css("top", canvas_height - pixel_bjerg_top - 130);
 
-     $(".top_popud").css("left", mountainwidth - 45).css("top", canvas_height - pixel_bjerg_top - 130);
-
-     $(".slut_popud").css("left", canvas_width - 140).css("top", canvas_height - pixel_bjerg_slut - 130);
-
+     if (opg_type == "patagonien") {
+         $(".slut_popud").css("right", 10).css("top", canvas_height - 120);
+         $(".top_popud").css("left", mountainwidth - 85).css("top", canvas_height - pixel_bjerg_top - 130);
+     } 
 
      /* var bundtext = new PointText({
           point: [3, canvas_height - pixel_bjerg_start - 20],

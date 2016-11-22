@@ -10,8 +10,7 @@
 
 .canvas_container {
     position: relative;
-    background-image: url("img/windyBG_new.png");
-
+    background-image: url("img/windyBG_rotate.png");
 }
 
 .spm_container {
@@ -35,7 +34,7 @@
 #UserMsgBox {
     top: 5%;
     max-height: 95%;
-    width:33%;
+    width: 33%;
 }
 
 .korrekt_svar {
@@ -56,10 +55,11 @@
     margin-top: 0px;
 }
 
-.btn_svar{
+.btn_svar {
     margin-top: 7px;
 }
-.btn_help{
+
+.btn_help {
     padding-left: 10px;
 }
 
@@ -75,10 +75,11 @@
 
 .popud_selected {}
 
-.glyphicon-chevron-down, .glyphicon-chevron-up  {
+.glyphicon-chevron-down,
+.glyphicon-chevron-up {
     margin-right: 6px;
     font-size: 17px;
-    color:#999;
+    color: #999;
     position: absolute;
     top: 10px;
 }
@@ -87,14 +88,14 @@
     height: 650px;
 }
 
-.glyhicontainer{
+.glyhicontainer {
     position: relative;
     margin-right: 22px;
     top: -8px;
 }
 
-.active_popud{
-	    /* color: green; */
+.active_popud {
+    /* color: green; */
     font-size: 14px;
     /* background-color: red; */
     padding-top: 4px;
@@ -102,4 +103,8 @@
     border: 1px solid #56BFC5;
     border-radius: 4px;
     margin-top: -4px;
+}
+
+h4 {
+    margin-bottom: 5px;
 }
