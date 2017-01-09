@@ -93,7 +93,7 @@
              }
          }
      });
-     $(".popup_menu").draggable({});
+     //$(".popup_menu").draggable({});
  });
 
  function show_begreber() {
