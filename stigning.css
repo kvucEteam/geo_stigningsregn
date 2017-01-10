@@ -14,13 +14,14 @@
 }
 
 .spm_container {
-    background-color: white;
+    background-color: rgba(255,255,255,.9);
     margin-top: 16px;
     border-radius: 8px;
     opacity: 1;
     padding: 0px 20px 20px 20px;
     height: auto;
     overflow: auto;
+    z-index: 1;
 }
 
 .btn_abolute {
@@ -47,6 +48,8 @@
     text-align: right;
     height: 33px;
     margin-bottom: 12px;
+    border: 1px solid #999;
+    border-radius: 4px;
 }
 
 .btn {
@@ -107,4 +110,8 @@
 
 h4 {
     margin-bottom: 5px;
+}
+
+h3{
+    line-height:1.6;
 }

@@ -325,11 +325,11 @@
 
      $(".bund_popud").css("top", canvas_height - pixel_bjerg_start - 130).css("left", 10);
       $(".slut_popud").css("right", 10).css("top", canvas_height - pixel_bjerg_slut - 130);
-         $(".top_popud").css("left", mountainwidth - 45).css("top", canvas_height - pixel_bjerg_top - 130);
+         $(".top_popud").css("left", mountainwidth - 45).css("top", canvas_height - pixel_bjerg_top +30);
 
      if (opg_type == "patagonien") {
          $(".slut_popud").css("right", 10).css("top", canvas_height - 120);
-         $(".top_popud").css("left", mountainwidth - 85).css("top", canvas_height - pixel_bjerg_top - 130);
+         $(".top_popud").css("left", mountainwidth - 85).css("top", canvas_height - pixel_bjerg_top +30);
      } 
 
      /* var bundtext = new PointText({
