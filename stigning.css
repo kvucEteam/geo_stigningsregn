@@ -14,7 +14,7 @@
 }
 
 .spm_container {
-    background-color: rgba(255,255,255,.9);
+    background-color: rgba(255, 255, 255, .9);
     margin-top: 16px;
     border-radius: 8px;
     opacity: 1;
@@ -112,6 +112,6 @@ h4 {
     margin-bottom: 5px;
 }
 
-h3{
-    line-height:1.6;
+h3 {
+    line-height: 1.6;
 }
