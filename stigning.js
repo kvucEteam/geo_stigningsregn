@@ -94,6 +94,7 @@
          }
      });
      //$(".popup_menu").draggable({});
+     microhint($(".active_popud").parent(), "Find den værdi, der skal stå ved ?</br>Skriv den ind i feltet øverst til højre");
  });
 
  function show_begreber() {
@@ -324,13 +325,13 @@
      // TEGN TEXFELTER PBA BJERG:
 
      $(".bund_popud").css("top", canvas_height - pixel_bjerg_start - 130).css("left", 10);
-      $(".slut_popud").css("right", 10).css("top", canvas_height - pixel_bjerg_slut - 130);
-         $(".top_popud").css("left", mountainwidth - 45).css("top", canvas_height - pixel_bjerg_top +30);
+     $(".slut_popud").css("right", 10).css("top", canvas_height - pixel_bjerg_slut - 130);
+     $(".top_popud").css("left", mountainwidth - 45).css("top", canvas_height - pixel_bjerg_top + 30);
 
      if (opg_type == "patagonien") {
          $(".slut_popud").css("right", 10).css("top", canvas_height - 120);
-         $(".top_popud").css("left", mountainwidth - 85).css("top", canvas_height - pixel_bjerg_top +30);
-     } 
+         $(".top_popud").css("left", mountainwidth - 85).css("top", canvas_height - pixel_bjerg_top + 30);
+     }
 
      /* var bundtext = new PointText({
           point: [3, canvas_height - pixel_bjerg_start - 20],
@@ -416,6 +417,8 @@
 
  function tjek_svar() {
      console.log("tjekker svar");
+
+     $(".microhint").remove();
      var korrekt = svar_Array[runde];
      var user_input = $(".svar").val();
      user_input = user_input.replace(",", ".");
@@ -428,13 +431,21 @@
 
              updateBoxes(runde);
              user_input = user_input.replace(".", ",");
-             UserMsgBox("body", "<h3>Dit svar: <b>" + user_input + " " + jsonData.spm[runde].value + " </b> er<span class='label label-success'>accepteret</span></h3><p>Systemet har udregnet " + korrekt + jsonData.spm[runde].value + " som det rigtige afrundede svar. Svaret bliver overført til modellen og det er den værdi du skal arbejde videre med.");
+             //UserMsgBox("body", "<h3>Dit svar: <b>" + user_input + " " + jsonData.spm[runde].value + " </b> er<span class='label label-success'>accepteret</span></h3><p>Systemet har udregnet " + korrekt + jsonData.spm[runde].value + " som det rigtige afrundede svar. Svaret bliver overført til modellen og det er den værdi du skal arbejde videre med.");
+             
+             if (runde < jsonData.spm.length-1){
+
+             microhint($(".input_container"), "<h3>Dit svar: <b>" + user_input + " " + jsonData.spm[runde].value + " </b> er<span class='label label-success'>accepteret</span></h3><p>Systemet har udregnet " + korrekt + jsonData.spm[runde].value + " som det rigtige afrundede svar. Svaret bliver overført til modellen og det er den værdi du skal arbejde videre med.");
+             
+             }
+
              runde++;
              pose_question(runde);
          } else {
              fejl++;
              user_input = user_input.replace(".", ",");
-             UserMsgBox("body", "<h3>Dit svar: <b>" + user_input + " " + jsonData.spm[runde].value + " </b> er desværre<span class='label label-danger'>forkert</span></h3><p>" + jsonData.spm[runde].spm_instruktion + "</p>");
+             //UserMsgBox("body", "<h3>Dit svar: <b>" + user_input + " " + jsonData.spm[runde].value + " </b> er desværre<span class='label label-danger'>forkert</span></h3><p>" + jsonData.spm[runde].spm_instruktion + "</p>");
+          microhint($(".input_container"), "<h3>Dit svar: <b>" + user_input + " " + jsonData.spm[runde].value + " </b> er desværre<span class='label label-danger'>forkert</span></h3><p>" + jsonData.spm[runde].spm_instruktion + "</p>");
          }
      }
      $(".svar").focus();
@@ -508,6 +519,9 @@
          $(".btn-restart").click(function() {
              location.reload();
          });
+     }
+     if ($(".active_popud")) {
+         //microhint($(".active_popud").parent(), "Find den værdi, der skal stå ved ?</br>Skriv den ind i feltet øverst til højre");
      }
  }
 
