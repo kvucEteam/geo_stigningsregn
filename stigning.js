@@ -94,7 +94,7 @@
          }
      });
      //$(".popup_menu").draggable({});
-     microhint($(".active_popud").parent(), "Find den værdi, der skal stå ved ?</br>Skriv den ind i feltet øverst til højre");
+     microhint($(".bund_popud"), "Find den værdi, der skal stå ved ?</br>Skriv den ind i feltet øverst til højre");
  });
 
  function show_begreber() {
@@ -435,7 +435,7 @@
              
              if (runde < jsonData.spm.length-1){
 
-             microhint($(".input_container"), "<h3>Dit svar: <b>" + user_input + " " + jsonData.spm[runde].value + " </b> er<span class='label label-success'>accepteret</span></h3><p>Systemet har udregnet " + korrekt + jsonData.spm[runde].value + " som det rigtige afrundede svar. Svaret bliver overført til modellen og det er den værdi du skal arbejde videre med.");
+             microhint($(".input_container"), "<h3>Dit svar: <b>" + user_input + " " + jsonData.spm[runde].value + " </b> er <span class='label label-success'>accepteret</span></h3><p>Systemet har udregnet " + korrekt + jsonData.spm[runde].value + " som det rigtige afrundede svar. Svaret bliver overført til modellen og det er den værdi du skal arbejde videre med.");
              
              }
 
@@ -445,7 +445,7 @@
              fejl++;
              user_input = user_input.replace(".", ",");
              //UserMsgBox("body", "<h3>Dit svar: <b>" + user_input + " " + jsonData.spm[runde].value + " </b> er desværre<span class='label label-danger'>forkert</span></h3><p>" + jsonData.spm[runde].spm_instruktion + "</p>");
-          microhint($(".input_container"), "<h3>Dit svar: <b>" + user_input + " " + jsonData.spm[runde].value + " </b> er desværre<span class='label label-danger'>forkert</span></h3><p>" + jsonData.spm[runde].spm_instruktion + "</p>");
+          microhint($(".input_container"), "<h3>Dit svar: <b>" + user_input + " " + jsonData.spm[runde].value + " </b> er desværre <span class='label label-danger'>forkert</span></h3><p>" + jsonData.spm[runde].spm_instruktion + "</p>");
          }
      }
      $(".svar").focus();

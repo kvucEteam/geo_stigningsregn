@@ -116,7 +116,7 @@ h3 {
     line-height: 1.6;
 }
 
-.microhint{
+.microhint, .mh_bgr{
 
     background-color: #f6f0e6;
     color: #333;
